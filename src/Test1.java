@@ -1,5 +1,5 @@
-public class Test {
+public class Test1 {
     public static int myMethod() {
-        return 5;
+        return 9;
     }
 }
