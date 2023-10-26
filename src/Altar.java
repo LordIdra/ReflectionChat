@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 
 public final class Altar {
-    private static final Set<String> victims = Set.of("Test1");
+    private static final Set<String> victims = Set.of("Pentagram");
     private static final Map<String, Map<String, Method>> classes = new HashMap<>();
 
     private Altar() {}
