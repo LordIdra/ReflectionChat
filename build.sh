@@ -1,1 +1,1 @@
-javac src/Pentagram.java
+javac real_src/Pentagram.java

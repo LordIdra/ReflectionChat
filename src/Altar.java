@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -23,14 +24,7 @@ public final class Altar {
     public static void prepare() {
         for (String victim : victims) {
             // would be better to supply it with a list of all the urls at once but whatever
-            URLClassLoader loader;
-            try {
-                loader = new URLClassLoader(new URL[] {
-                        new URI("https://raw.githubusercontent.com/LordIdra/ReflectionChat/main/src/" + victim + ".class").toURL()
-                });
-            } catch (MalformedURLException | URISyntaxException e) {
-                throw new RuntimeException(e);
-            }
+            URLClassLoader loader = getUrlClassLoader(victim);
 
             Class<?> loadedClass;
             try {
@@ -44,6 +38,23 @@ public final class Altar {
                     .collect(Collectors.toMap(Method::getName, Function.identity(), (a, b) -> b));
 
             classes.put(loadedClass.getName(), methods);
+        }
+    }
+
+    private static URLClassLoader getUrlClassLoader(String victim) {
+        try {
+            URL url = new URI("https://raw.githubusercontent.com/LordIdra/ReflectionChat/main/real_src/" + victim + ".class").toURL();
+
+            // we just get a ClassNotFoundException otherwise which is kinda confusing (unlike the rest of this project obviously)
+            try {
+                url.getContent();
+            } catch (IOException e) {
+                throw new RuntimeException("github hasn't updated the file yet lol: " + victim);
+            }
+
+            return new URLClassLoader(new URL[] { url });
+        } catch (MalformedURLException | URISyntaxException e) {
+            throw new RuntimeException(e);
         }
     }
 
