@@ -1,1 +1,1 @@
-javac src/Satan
+javac src/Pentagram.java
