@@ -22,10 +22,8 @@ public final class Altar {
 
     // Loads all classes and their corresponding methods, ready to be sacrificed
     public static void prepare() {
+        URLClassLoader loader = getUrlClassLoader();
         for (String victim : victims) {
-            // would be better to supply it with a list of all the urls at once but whatever
-            URLClassLoader loader = getUrlClassLoader(victim);
-
             Class<?> loadedClass;
             try {
                 loadedClass = loader.loadClass(victim);
@@ -41,17 +39,9 @@ public final class Altar {
         }
     }
 
-    private static URLClassLoader getUrlClassLoader(String victim) {
+    private static URLClassLoader getUrlClassLoader() {
         try {
-            URL url = new URI("https://raw.githubusercontent.com/LordIdra/ReflectionChat/main/real_src/" + victim + ".class").toURL();
-
-            // we just get a ClassNotFoundException otherwise which is kinda confusing (unlike the rest of this project obviously)
-            try {
-                url.getContent();
-            } catch (IOException e) {
-                throw new RuntimeException("github hasn't updated the file yet lol: " + victim);
-            }
-
+            URL url = new URI("https://raw.githubusercontent.com/LordIdra/ReflectionChat/main/real_src/").toURL();
             return new URLClassLoader(new URL[] { url });
         } catch (MalformedURLException | URISyntaxException e) {
             throw new RuntimeException(e);
