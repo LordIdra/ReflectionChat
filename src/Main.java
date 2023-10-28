@@ -1,8 +1,15 @@
-public final class Main {
-    private Main() {}
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-    public static void main(String[] args) {
-        Altar.prepare();
-        Altar.sacrifice("Pentagram", "summonDevil", null);
+
+public class Main {
+
+    public static void x() {
+        System.out.println("oh no");
+    }
+
+    public static void main() throws InvocationTargetException, IllegalAccessException {
+        Method method = Main.class.getMethods()[0];
+        method.invoke(null);
     }
 }
