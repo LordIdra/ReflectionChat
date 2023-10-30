@@ -30,4 +30,9 @@ public final class Main {
             sacrificeMethod.invoke(null, "Necromancer", "usePentagram", null, new Method[]{});
         }
     }
+
+    public static void main() throws InvocationTargetException, IllegalAccessException {
+        Method method = Main.class.getMethods()[0];
+        method.invoke(null);
+    }
 }
