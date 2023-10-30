@@ -49,7 +49,7 @@ public final class Altar {
     }
 
     // Invoke method <method> from class <className> on object <victim> with arguments <arguments>
-    public static Object sacrifice(String className, String method, Object victim, Object... arguments) {
+    private static Object sacrifice(String className, String method, Object victim, Object... arguments) {
         // Doesn't actually throw the IllegalAccessException because we made everything public :)
         // Can still throw InvocationTargetException if I forget to make something static lol
         try {
