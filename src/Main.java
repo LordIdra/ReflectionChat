@@ -22,7 +22,7 @@ public final class Main {
         }
 
         if (args[0].equalsIgnoreCase("server")) {
-            Pentagram.summonDevil();
+            new Pentagram().mainloop();
             //sacrificeMethod.invoke(null, "Pentagram", "summonDevil", null, new Method[]{});
         } else {
             // not server so must be client

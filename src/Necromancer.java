@@ -1,6 +1,5 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
@@ -12,9 +11,17 @@ public final class Necromancer {
     private static final String HOST = "localhost";
     private static final int PORT = 13666;
     private final Socket socket;
+    private final DataInputStream in;
+    private final DataOutputStream out;
 
     public Necromancer() {
         socket = openSocket();
+        try {
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static Socket openSocket() {
@@ -33,28 +40,7 @@ public final class Necromancer {
         Scanner scanner = new Scanner(System.in);
         do {
             String line = scanner.nextLine();
-            send(line);
+            OuijaBoard.invocation(out, line);
         } while (true);
-    }
-
-    private void send(String message) {
-        try {
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            out.writeUTF(message);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String receive() {
-        try {
-            return new DataInputStream(socket.getInputStream()).readUTF();
-        } catch (EOFException e) {
-            System.err.println("Connection lost (EOF)");
-            System.exit(1);
-            return null; // stupid language
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
