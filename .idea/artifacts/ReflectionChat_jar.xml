@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ReflectionChat:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ReflectionChat_jar</output-path>
+    <root id="archive" name="ReflectionChat.jar">
+      <element id="module-output" name="ReflectionChat" />
+    </root>
+  </artifact>
+</component>
