@@ -1,3 +1,5 @@
+import ouija.board.OuijaBoardUtil;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -40,7 +42,7 @@ public final class Necromancer {
         Scanner scanner = new Scanner(System.in);
         do {
             String line = scanner.nextLine();
-            OuijaBoard.invocation(out, line);
+            OuijaBoardUtil.sendProclaimClient(out, line);
         } while (true);
     }
 }

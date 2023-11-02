@@ -1,3 +1,4 @@
+import ouija.board.OuijaBoardUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.DataInputStream;
@@ -32,7 +33,7 @@ public final class Pentagram {
                 System.out.println("Client disconnected");
                 return;
             }
-            received = OuijaBoard.receive(in);
+            received = OuijaBoardUtil.receive(in);
             if (received == null) {
                 break;
             }
