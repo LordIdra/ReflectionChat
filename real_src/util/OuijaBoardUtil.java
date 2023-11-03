@@ -1,7 +1,7 @@
 package util;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -15,7 +15,7 @@ import java.util.Calendar;
 public final class OuijaBoardUtil {
     private OuijaBoardUtil() {}
 
-    private static @NotNull String getFormattedTime() {
+    private static  String getFormattedTime() {
         return new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 
@@ -27,7 +27,7 @@ public final class OuijaBoardUtil {
         System.out.println("[" + getFormattedTime() + "|clientbound] " + message);
     }
 
-    public static void writeInt(@NotNull DataOutputStream out, int value) {
+    public static void writeInt( DataOutputStream out, int value) {
         try {
             out.writeInt(value);
         } catch (IOException e) {
@@ -35,11 +35,11 @@ public final class OuijaBoardUtil {
         }
     }
 
-    public static void writePacketType(@NotNull DataOutputStream out, @NotNull PacketType type) {
+    public static void writePacketType( DataOutputStream out,  PacketType type) {
         writeInt(out, (byte) type.ordinal());
     }
 
-    public static void writeString(@NotNull DataOutputStream out, @NotNull String message) {
+    public static void writeString( DataOutputStream out,  String message) {
         try {
             byte[] data = message.getBytes(StandardCharsets.UTF_8);
             out.writeInt(data.length);
@@ -49,7 +49,7 @@ public final class OuijaBoardUtil {
         }
     }
 
-    public static int readInt(@NotNull DataInputStream in) {
+    public static int readInt( DataInputStream in) {
         try {
             return in.readInt();
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public final class OuijaBoardUtil {
         }
     }
 
-    public static @Nullable PacketType readPacketType(@NotNull DataInputStream in) {
+    public static  PacketType readPacketType( DataInputStream in) {
         int ordinal;
         try {
             ordinal = in.readInt();
@@ -69,7 +69,7 @@ public final class OuijaBoardUtil {
         return PacketType.class.getEnumConstants()[ordinal];
     }
 
-    public static @NotNull String readString(@NotNull DataInputStream in) {
+    public static  String readString( DataInputStream in) {
         try {
             int bytesToRead = in.readInt();
             byte[] bytes = new byte[bytesToRead];

@@ -1,7 +1,7 @@
 package client;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -31,7 +31,7 @@ public final class Necromancer {
         }
     }
 
-    private static @NotNull Socket openSocket() {
+    private static  Socket openSocket() {
         try {
             return new Socket(HOST, PORT);
         } catch (UnknownHostException | ConnectException e) {
@@ -41,7 +41,7 @@ public final class Necromancer {
         }
     }
 
-    private @Nullable String authenticate(@NotNull Scanner scanner) {
+    private  String authenticate( Scanner scanner) {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
         if (!Authenticator.authenticate(in, out, username)) {
@@ -83,5 +83,9 @@ public final class Necromancer {
         }
         //stayUndeadFuture.cancel(true);
         System.exit(0);
+    }
+
+    public static void run() {
+        new Necromancer().mainloop();
     }
 }

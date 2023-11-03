@@ -1,7 +1,7 @@
 package server;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+
 import util.OuijaBoardUtil;
 import util.PacketType;
 
@@ -25,7 +25,7 @@ public final class Authenticator {
         OuijaBoardUtil.writePacketType(out, PacketType.BLESSING);
     }
 
-    public static @Nullable String authenticate(DataInputStream in, DataOutputStream out, @NotNull Set<String> usernames) {
+    public static  String authenticate(DataInputStream in, DataOutputStream out,  Set<String> usernames) {
         PacketType packetType = OuijaBoardUtil.readPacketType(in);
         if (packetType != PacketType.INVOCATION) {
             String packetName = packetType == null ? "NULL" : packetType.name();

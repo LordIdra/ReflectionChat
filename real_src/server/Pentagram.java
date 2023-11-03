@@ -1,6 +1,6 @@
 package server;
 
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,7 +21,7 @@ public final class Pentagram {
         serverSocket = openSocket();
     }
 
-    private static @NotNull ServerSocket openSocket() {
+    private static  ServerSocket openSocket() {
         try {
             return new ServerSocket(PORT);
         } catch (IOException e) {
@@ -49,5 +49,9 @@ public final class Pentagram {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public static void run() {
+        new Pentagram().mainloop();
     }
 }

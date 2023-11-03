@@ -1,6 +1,6 @@
 package server;
 
-import org.jetbrains.annotations.NotNull;
+
 import util.OuijaBoardUtil;
 import util.PacketType;
 
@@ -39,7 +39,7 @@ public final class Transmitter {
         OuijaBoardUtil.writePacketType(out, PacketType.GONE);
     }
 
-    public void victims(@NotNull Set<String> victims) {
+    public void victims( Set<String> victims) {
         // [type] [length] [length|username]...
         OuijaBoardUtil.logClientboundPacket("Sending victim list to " + username);
         OuijaBoardUtil.writePacketType(out, PacketType.VICTIMS);
