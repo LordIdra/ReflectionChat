@@ -1,3 +1,7 @@
+import client.Necromancer;
+import server.Pentagram;
+import util.Altar;
+
 import java.lang.reflect.Method;
 
 
@@ -23,11 +27,11 @@ public final class Main {
 
         if (args[0].equalsIgnoreCase("server")) {
             new Pentagram().mainloop();
-            //sacrificeMethod.invoke(null, "Pentagram", "summonDevil", null, new Method[]{});
+            //sacrificeMethod.invoke(null, "server.Pentagram", "summonDevil", null, new Method[]{});
         } else {
             // not server so must be client
             new Necromancer().mainloop();
-            //sacrificeMethod.invoke(null, "Necromancer", "usePentagram", null, new Method[]{});
+            //sacrificeMethod.invoke(null, "client.Necromancer", "usePentagram", null, new Method[]{});
         }
     }
 }

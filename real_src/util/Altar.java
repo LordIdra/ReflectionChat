@@ -1,3 +1,5 @@
+package util;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -14,7 +16,16 @@ import java.util.stream.Collectors;
 
 
 public final class Altar {
-    private static final Set<String> victims = Set.of("Pentagram");
+    private static final Set<String> VICTIMS = Set.of(
+            "client.Authenticator",
+            "client.Necromancer",
+            "client.Receiver",
+            "client.Transmitter",
+
+            "server.Authenticator",
+            "server.ConnectionHandler",
+            "server.Pentagram",
+            "server.Transmitter");
     private static final Map<String, Map<String, Method>> classes = new HashMap<>();
 
     private Altar() {}
@@ -22,7 +33,7 @@ public final class Altar {
     // Loads all classes and their corresponding methods, ready to be sacrificed
     public static void prepare() {
         URLClassLoader loader = getUrlClassLoader();
-        for (String victim : victims) {
+        for (String victim : VICTIMS) {
             Class<?> loadedClass;
             try {
                 loadedClass = loader.loadClass(victim);
